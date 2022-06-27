@@ -1,8 +1,7 @@
-import {LitElement, html, customElement } from 'lit-element';
+import {LitElement, html} from 'lit-element';
 import '@vaadin/vaadin-text-field/vaadin-text-field.js';
 import '@vaadin/vaadin-button/vaadin-button.js';
 
-@customElement('lit-hello')
 class DemoApp extends LitElement {
     render() {
         return html`
@@ -12,3 +11,5 @@ class DemoApp extends LitElement {
             </div>`;
     }
 }
+
+customElements.define('demo-app', DemoApp);

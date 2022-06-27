@@ -96,7 +96,7 @@ const productionConfig = merge([
           test: /\.(js|ts)$/,
           use: [
             {
-              loader: resolve('minify-html-loader.js')
+              loader: resolve('utils/minify-html-loader.js')
             }
           ]
         }
@@ -107,7 +107,7 @@ const productionConfig = merge([
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: resolve('demos.json'),
+            from: resolve('src/demos.json'),
             to: resolve('dist')
           }
         ]
