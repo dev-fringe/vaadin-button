@@ -1,13 +1,8 @@
 {
-  "name": "vaadin",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "webpack --mode production"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "hdlee",
   "dependencies": {
     "@polymer/polymer": "^3.5.1",
     "@vaadin/vaadin-button": "^23.1.2",
