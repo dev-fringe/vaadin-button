@@ -9,12 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@axa-ch/input-text": "^6.0.0",
     "@polymer/polymer": "^3.5.1",
     "@vaadin/vaadin-button": "^23.1.2",
     "@vaadin/vaadin-text-field": "^23.1.2",
-    "lit": "^2.2.6",
-    "lit-vaadin-helpers": "^0.3.1"
+    "lit": "^2.2.6"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
