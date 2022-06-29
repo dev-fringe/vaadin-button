@@ -1,5 +1,4 @@
 'use strict';
-
 const { resolve } = require('path');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -48,6 +47,7 @@ const developmentConfig = merge([
     mode: 'development',
     plugins: [
       new HtmlWebpackPlugin({
+        title: 'My Vaadin application',
         inject: false,
         template: INDEX_TEMPLATE
       }),
@@ -56,21 +56,22 @@ const developmentConfig = merge([
           configFile: TSCONFIG
         }
       })
-    ],
-    devServer: {
-      static: resolve('src'),
-      compress: true,
-      port: 3000,
-      host: '0.0.0.0',
-      historyApiFallback: true,
-      hot: false,
-      proxy: {
-        '/api': 'http://localhost:8000'
-      },
-      client: {
-        overlay: true
-      }
-    }
+    ]
+    // ,
+    // devServer: {
+    //   static: resolve('src'),
+    //   compress: true,
+    //   port: 3000,
+    //   host: '0.0.0.0',
+    //   historyApiFallback: true,
+    //   hot: false,
+    //   proxy: {
+    //     '/api': 'http://localhost:8000'
+    //   },
+    //   client: {
+    //     overlay: true
+    //   }
+    // }
   }
 ]);
 
@@ -93,26 +94,28 @@ const productionConfig = merge([
     module: {
       rules: [
         {
-          test: /\.(js|ts)$/,
-          use: [
-            {
-              loader: resolve('minify-html-loader.js')
-            }
-          ]
+          test: /\.(js|ts)$/
+          // ,
+          // use: [
+          //   {
+          //     loader: resolve('minify-html-loader.js')
+          //   }
+          // ]
         }
       ]
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: resolve('demos.json'),
-            to: resolve('dist')
-          }
-        ]
-      }),
+      // new CopyWebpackPlugin({
+      //   patterns: [
+      //     {
+      //       from: resolve('demos.json'),
+      //       to: resolve('dist')
+      //     }
+      //   ]
+      // }),
       new HtmlWebpackPlugin({
+        title: 'My Vaadin application',
         template: INDEX_TEMPLATE,
         inject: false,
         minify: {
