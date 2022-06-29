@@ -3,12 +3,8 @@ const { resolve } = require('path');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { ESBuildMinifyPlugin } = require('esbuild-loader');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
 const INDEX_TEMPLATE = resolve('./src/index.html');
-const TSCONFIG = resolve(__dirname, 'tsconfig.json');
 
 const commonConfig = merge([
   {
@@ -41,40 +37,6 @@ const commonConfig = merge([
   }
 ]);
 
-const developmentConfig = merge([
-  {
-    devtool: 'cheap-module-source-map',
-    mode: 'development',
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: 'My Vaadin application',
-        inject: false,
-        template: INDEX_TEMPLATE
-      }),
-      new ForkTsCheckerWebpackPlugin({
-        typescript: {
-          configFile: TSCONFIG
-        }
-      })
-    ]
-    // ,
-    // devServer: {
-    //   static: resolve('src'),
-    //   compress: true,
-    //   port: 3000,
-    //   host: '0.0.0.0',
-    //   historyApiFallback: true,
-    //   hot: false,
-    //   proxy: {
-    //     '/api': 'http://localhost:8000'
-    //   },
-    //   client: {
-    //     overlay: true
-    //   }
-    // }
-  }
-]);
-
 const productionConfig = merge([
   {
     devtool: 'nosources-source-map',
@@ -95,25 +57,11 @@ const productionConfig = merge([
       rules: [
         {
           test: /\.(js|ts)$/
-          // ,
-          // use: [
-          //   {
-          //     loader: resolve('minify-html-loader.js')
-          //   }
-          // ]
         }
       ]
     },
     plugins: [
       new CleanWebpackPlugin(),
-      // new CopyWebpackPlugin({
-      //   patterns: [
-      //     {
-      //       from: resolve('demos.json'),
-      //       to: resolve('dist')
-      //     }
-      //   ]
-      // }),
       new HtmlWebpackPlugin({
         title: 'My Vaadin application',
         template: INDEX_TEMPLATE,
@@ -130,9 +78,5 @@ const productionConfig = merge([
 ]);
 
 module.exports = (env, argv) => {
-  if (argv.mode === 'development') {
-    return merge(commonConfig, developmentConfig);
-  }
-
   return merge(commonConfig, productionConfig);
 };
