@@ -1,5 +1,5 @@
 import { LitElement, html, query } from 'lit-element';
-import { customElement} from 'lit/decorators.js';
+import { customElement} from 'lit-element/decorators.js';
 import '@vaadin/vaadin-grid/vaadin-grid';
 import '@vaadin/vaadin-grid/vaadin-grid-column';
 
